@@ -7,12 +7,17 @@
 8M HSE
 
 PA4 - DAC Output
+PA9 PA10 - USART
 
 Usart Bandwidth: 1500000
 
 AA + Graph Data(200 * 150 / 8 Bytes) + 00 00 00 00(for Clear and Disp)
 
 
+
+DEMO:
+
+![flir](https://github.com/AnalogDragon/OSC-YTmode-Display/blob/master/image/0.png)
 
 
 
