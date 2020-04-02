@@ -3,7 +3,7 @@
     This application is used to send picture data stream through serial port.
 
 
-![dialogpic](https://gitfile.oss-cn-beijing.aliyuncs.com/git/image/dialog.jpg)
+![dialogpic](https://github.com/Hades2001/OSC-YTmode-Display/blob/master/qtSource/dialog.jpg)
 
 ## Instructions for use
     1.Choose serial port.
