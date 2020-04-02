@@ -1,7 +1,6 @@
 #include "usart.h"
 #include "stm32f10x.h"
 
-struct USART1_REG USART1_DATA;
   
 void uart_init(u32 bound){
 	
