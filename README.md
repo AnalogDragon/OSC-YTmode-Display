@@ -14,7 +14,7 @@ Usart Bandwidth: 1500000
 AA + Graph Data(200 * 150 / 8 Bytes) + 00 00 00 00(for Clear and Disp)
 
 
-![PC App](https://github.com/AnalogDragon/OSC-YTmode-Display/tree/master/qtSource)
+[PC App](https://github.com/AnalogDragon/OSC-YTmode-Display/tree/master/qtSource)
 
 
 DEMO:
