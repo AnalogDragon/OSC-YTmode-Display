@@ -8,31 +8,45 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     _serial = new QSerialPort();
 
-    connect(ui->cb_serial,&clickedCombobox::clicked,[=](bool){
+    _scanSerialTimer = new QTimer();
+    connect(_scanSerialTimer,&QTimer::timeout,[=](){
         ui->cb_serial->clear();
         QList<QSerialPortInfo>  infos = QSerialPortInfo::availablePorts();
         if(infos.isEmpty())
         {
-            ui->cb_serial->addItem("无串口");
             return;
         }
-        foreach (QSerialPortInfo info, infos)
+        else
         {
-            ui->cb_serial->addItem(info.portName());
+            foreach (QSerialPortInfo info, infos)
+            {
+                _scanSerialTimer->stop();
+                ui->cb_serial->addItem(info.portName());
+            }
+            ui->bn_Open->setEnabled(true);
+            ui->bn_Start->setEnabled(true);
         }
     });
+
 
     ui->cb_serial->clear();
     QList<QSerialPortInfo>  infos = QSerialPortInfo::availablePorts();
     if(infos.isEmpty())
     {
-        ui->cb_serial->addItem("无串口");
+        ui->bn_Open->setEnabled(false);
+        ui->bn_Start->setEnabled(false);
+        _scanSerialTimer->start(500);
         return;
     }
-    foreach (QSerialPortInfo info, infos)
+    else
     {
-        ui->cb_serial->addItem(info.portName());
+        _scanSerialTimer->stop();
+        foreach (QSerialPortInfo info, infos)
+        {
+            ui->cb_serial->addItem(info.portName());
+        }
     }
+
 
     ui->cb_mode->clear();
     ui->cb_mode->addItem("RGB");
@@ -53,6 +67,20 @@ MainWindow::MainWindow(QWidget *parent) :
             _started = false;
             ImageNumber = 0;
             drawImage();
+        }
+    });
+
+    connect(ui->cb_serial,&clickedCombobox::clicked,[=](bool){
+        ui->cb_serial->clear();
+        QList<QSerialPortInfo>  infos = QSerialPortInfo::availablePorts();
+        if(infos.isEmpty())
+        {
+            ui->cb_serial->addItem("无串口");
+            return;
+        }
+        foreach (QSerialPortInfo info, infos)
+        {
+            ui->cb_serial->addItem(info.portName());
         }
     });
 
