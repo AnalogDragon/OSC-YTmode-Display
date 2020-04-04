@@ -18,7 +18,7 @@
 * picture mode : RGB Gray Mono
 
 ## Release pack Download URL
-[Windows V1.0.1](https://gitfile.oss-cn-beijing.aliyuncs.com/git/displayPicForSerial_windows.rar)
+[Windows V1.0.2](https://gitfile.oss-cn-beijing.aliyuncs.com/git/displayPicForSerial_windowsV1.02.rar)
 
 
 

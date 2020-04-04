@@ -95,8 +95,10 @@ MainWindow::~MainWindow()
 }
 void MainWindow::drawImage()
 {
-    QImage *image = new QImage;
     if( imagefiles.isEmpty()) return;
+
+    QImage *image = new QImage;
+
     image->load(imagefiles.at(ImageNumber));
     _SendImage = image->scaled(ui->label->width(),ui->label->height(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     _SendPixMap = QPixmap::fromImage(Threshold_pro(&_SendImage));
@@ -112,12 +114,15 @@ void MainWindow::drawImage()
 
     ui->label->setPixmap(_SendPixMap);
     ui->lb_info->setText(QString("%1/%2").arg(ImageNumber + 1).arg(imagefiles.size()));
+
+    delete image;
 }
 
 void MainWindow::sengImage()
 {
     if( !_serial->isOpen()) return;
     _SendImage = _SendImage.scaled(200,150,Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
     QByteArray sendarray;
     sendarray.append(char(0xAA));
     char bitdata = 0;
@@ -276,7 +281,7 @@ QImage MainWindow::Threshold_pro( QImage *image)
     int w = image->width();
     int h = image->height();
 
-    QImage *newimage = new QImage(w,h,QImage::Format_RGB888);
+    QImage newimage(w,h,QImage::Format_RGB888);
 
     QRgb rgbVal = 0;
     int grayVal = 0;
@@ -289,10 +294,10 @@ QImage MainWindow::Threshold_pro( QImage *image)
             grayVal = qGray(rgbVal);
             if(ui->cb_mode->currentIndex() == 2 )
                 grayVal = grayVal < _ThresholdValue ? 0 : 255;
-            newimage->setPixel(x,y,QColor(grayVal,grayVal,grayVal).rgb());
+            newimage.setPixel(x,y,QColor(grayVal,grayVal,grayVal).rgb());
         }
     }
-    return *newimage;
+    return newimage;
 }
 
 void MainWindow::on_cb_mode_currentIndexChanged(int index)
