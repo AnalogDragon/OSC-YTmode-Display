@@ -17,6 +17,8 @@ AA + Graph Data(200 * 150 / 8 Bytes) + 00 00 00 00(for Clear and Disp)
 [PC App](https://github.com/AnalogDragon/OSC-YTmode-Display/tree/master/qtSource)
 
 
+![DEMO Video](https://www.bilibili.com/video/av200241112/ "在示波器Y-T模式下 播放BadApple【示波器 BadApple】")
+
 DEMO:
 
 ![flir](https://github.com/AnalogDragon/OSC-YTmode-Display/blob/master/image/0.png)
